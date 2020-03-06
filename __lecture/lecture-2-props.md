@@ -102,7 +102,34 @@ function VideoPlayer(props) {
   );
 }
 ```
-
+```jsx
+function VideoPlayer(props) {
+  return (
+    <div>
+      <video
+        src={props.videoUrl}
+        width={props.width}
+        height={props.height}
+      />
+      <p>{props.description}</p>
+    </div>
+  );
+}
+```
+```jsx
+function VideoPlayer({ videoURL, width, height, desc }) {
+  return (
+    <div>
+      <video
+        src={videoUrl}
+        width={width}
+        height={height}
+      />
+      <p>{desc}</p>
+    </div>
+  );
+}
+```
 ---
 
 ```jsx
@@ -117,6 +144,52 @@ function Tweet(props) {
           <span className="date">Oct 29th</span>
         </p>
         <p>Alfalfa is the best food don't @ me</p>
+        <div>
+          <button>Reply</button>
+          <button>Retweet</button>
+          <button>Like</button>
+          <button>Share</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+```jsx
+function Tweet(props) {
+  return (
+    <div>
+      <Avatar src={props.image}/>
+      <div>
+        <p>
+          <span className="user-name">{props.userName</span>
+          <span className="handle">{props.handle}</span>
+          <span className="date">{props.date}</span>
+        </p>
+        <p>{props.tweet}</p>
+        <div>
+          <button>Reply</button>
+          <button>Retweet</button>
+          <button>Like</button>
+          <button>Share</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+```jsx
+function Tweet({ image, userName, handle, date, tweet}) {
+  return (
+    <div>
+      <Avatar src={image} />
+      <div>
+        <p>
+          <span className="user-name">{userName}</span>
+          <span className="handle">{handle}</span>
+          <span className="date">{date}</span>
+        </p>
+        <p>{tweet}</p>
         <div>
           <button>Reply</button>
           <button>Retweet</button>
@@ -145,7 +218,20 @@ function Header(props) {
   );
 }
 ```
+```jsx
+function Header(props) {
+  return (
+    <header>
+      <h1>{props.title}</h1>
 
+      <nav>
+        <a href={props.nav.first}>{props.nav.first.label}</a>
+        <a href={props.nav.second}>{props.nav.second.label}</a>
+      </nav>
+    </header>
+  );
+}
+```
 ---
 
 ### Mapping over items
@@ -255,7 +341,24 @@ const pets = [
   </ul>
 </div>;
 ```
+```jsx
+const pets = [
+  /* omitted */
+];
 
+<div>
+  <h1 className="title">My pets:</h1>
+  <ul>
+  {pets.map (pet => {
+    <PetInfo
+      name={pets[0].name}
+      age={pets[0].age}
+      species={pets[0].species}
+      breed={pets[0].breed}
+    />
+  })}
+</div>;
+```
 ---
 
 ```jsx
@@ -288,6 +391,15 @@ const pizzaToppings = [
   <Topping name="green pepper" />
   <Topping name="broccoli" />
 </Pizza>
+
+<Pizza>
+  {pizzaToppings
+    .filter(topping => topping.isVegetarian)
+    .map(topping => <Topping name={topping.name}/>)
+  }
+</Pizza>
+
+
 ```
 
 Hint: You'll need `filter` as well as `map`
