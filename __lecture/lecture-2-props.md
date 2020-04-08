@@ -162,7 +162,7 @@ function Tweet(props) {
       <Avatar src={props.image}/>
       <div>
         <p>
-          <span className="user-name">{props.userName</span>
+          <span className="user-name">{props.userName}</span>
           <span className="handle">{props.handle}</span>
           <span className="date">{props.date}</span>
         </p>
@@ -342,21 +342,48 @@ const pets = [
 </div>;
 ```
 ```jsx
+
 const pets = [
   /* omitted */
 ];
 
+function StorePet(props){
+  return (
+    <PetInfo
+    name={props.name}
+    age={props.age}
+    species={props.spieces}
+    breed={props.breed}
+    />
+  )
+}
+
+function App(props){
+  return (
+    <ul>
+      {pets.map(pet => (
+        <StorePet name={pet.name} age={pet.age} species={pet.species} breed={pet.breed}/>
+      ))}
+    </ul>
+  );
+}
+
 <div>
   <h1 className="title">My pets:</h1>
   <ul>
-  {pets.map (pet => {
     <PetInfo
       name={pets[0].name}
       age={pets[0].age}
       species={pets[0].species}
       breed={pets[0].breed}
     />
-  })}
+    <PetInfo
+      name={pets[1].name}
+      age={pets[1].age}
+      species={pets[1].species}
+      breed={pets[1].breed}
+    />
+  </ul>
 </div>;
 ```
 ---
@@ -377,6 +404,35 @@ const forecasts = [4, -3, 1, 9, 4, 2, -6];
 </div>;
 ```
 
+```jsx
+function StoreForecast(props) {
+  return (
+    <Day>{props.forecast}</Day>
+  );
+}
+
+const forecasts = [4, -3, 1, 9, 4, 2, -6];
+
+<div>
+  <h1>Weather forecast for the week ahead:</h1>
+
+  <Day>4 degrees</Day>
+  <Day>-3 degrees</Day>
+  <Day>1 degrees</Day>
+  <Day>9 degrees</Day>
+  <Day>4 degrees</Day>
+  <Day>2 degrees</Day>
+  <Day>-6 degrees</Day>
+</div>;
+
+function App(props) {
+  return (
+    {forecast.map(item => {
+      <StoreForecast />
+    })}
+  )
+}
+```
 ---
 
 ```jsx
@@ -391,6 +447,20 @@ const pizzaToppings = [
   <Topping name="green pepper" />
   <Topping name="broccoli" />
 </Pizza>
+
+<Pizza>
+  {pizzaToppings
+    .filter(topping => topping.isVegetarian)
+    .map(topping => <Topping name={topping.name}/>)
+  }
+</Pizza>
+
+
+
+
+
+
+
 
 <Pizza>
   {pizzaToppings

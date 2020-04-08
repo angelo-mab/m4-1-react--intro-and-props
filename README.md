@@ -56,7 +56,7 @@ To bootstrap this workshop, we've created several JS and CSS files:
 │   ├── ChatStream.js
 │   ├── Footer.css
 │   ├── Footer.js
-│   ├── Header.css
+│   ├── Header.cssw 
 │   └── Header.js
 ├── data.js
 └── index.js

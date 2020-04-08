@@ -1,47 +1,33 @@
 import React from 'react';
 
-import { Avatar } from './Avatar';
-
 import './ChatMessage.css';
-
-const bubbleTipSentSrc = '/assets/tip-sent.svg';
-const bubbleTipReceivedSrc = '/assets/tip-received.svg';
+import Avatar from './Avatar';
 
 function SentMessage(props) {
   return (
     <div className="chat-message-wrapper sent">
-      <div className="chat-message">
+      <div className='chat-message'>
         {props.message.body}
-        <img
-          alt=""
-          role="presentation"
-          className="tip"
-          src={bubbleTipSentSrc}
-        />
       </div>
     </div>
+
   );
 }
 
 function ReceivedMessage(props) {
   return (
-    <div className="chat-message-wrapper received">
+    <div>
       <Avatar size={36} user={props.message.user} />
-      <div className="name-and-message">
+      <div className="name-ange-message">
         <div className="author">{props.message.user.username}</div>
         <div className="chat-message">
           {props.message.body}
-          <img
-            alt=""
-            role="presentation"
-            className="tip"
-            src={bubbleTipReceivedSrc}
-          />
         </div>
       </div>
     </div>
   );
 }
+
 
 function ChatMessage(props) {
   if (props.messageType === 'sent') {
